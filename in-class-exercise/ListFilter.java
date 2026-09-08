@@ -1,3 +1,4 @@
+
 public class ListFilter {
    public static void main(String[] args) {
       // read the valid list into an int array (the next line reads valid1M.txt containing 1 million entries)
@@ -20,9 +21,9 @@ public class ListFilter {
 
       // Now filter the list by relying on the CollectionOfInts API
       final long startTime = System.currentTimeMillis();  // start timer
-      for (int key : keys)
-         if (!collection.contains(key))
-            System.out.println(key);
+      for (int x : keys)
+         if (!collection.contains(x))
+            System.out.println(x);
       final long endTime = System.currentTimeMillis();  // end timer
       System.out.println("Total execution time: " + (endTime - startTime));
    }
