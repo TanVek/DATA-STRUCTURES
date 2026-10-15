@@ -9,9 +9,9 @@ import java.util.*;
    the running maximum accordingly. Runs in O(n) time and O(n) space.
  */
 
-public class SunsetViewsNoStack {
+public class SunsetViewsStack {
 
-   public List<Integer> sunsetViews(int[] buildings, String direction) {
+   /*public List<Integer> sunsetViews(int[] buildings, String direction) {
 
       // O(n) space needed to store the building indexes that will be returned:
       ArrayList<Integer> sunfacing = new ArrayList<>(); // buildings facing the sun (to return)
@@ -36,11 +36,49 @@ public class SunsetViewsNoStack {
       }
       if (direction.equals("EAST")) Collections.reverse(sunfacing); // takes O(n) time
       return sunfacing;
-   }
+   }//*/
+   public static List<Integer> sunsetViews(int[] buildings, String direction) {
+        Stack<Integer> stack = new Stack<>();
+        int n = buildings.length;
+         
+        // Traverse from the side opposite the sun
+        int startAt;
+        int step; 
+        if(direction.equals("WEST")){ //Change values to West
+         startAt = 0;
+         step = 1;
+        } else if(direction.equals("EAST")){ //Change values to East
+         startAt = n-1;
+         step = -1;
+        }else throw new IllegalArgumentException("Invalid Direction");
+
+
+         int i = startAt;
+
+      while (i >= 0 && i < buildings.length) {
+         int height = buildings[i];
+
+         while (!stack.isEmpty() && buildings[stack.peek()] <= height) {
+            stack.pop();
+         }
+         stack.push(i);
+         
+         i += step; // Iterate through Buildings(Go to next building)
+      }
+
+      List<Integer> result = new ArrayList<Integer>();
+
+      while (!stack.isEmpty()) {//Runs until the stack is empty
+      result.add(stack.pop());
+      }
+      Collections.sort(result); //Reverses thge array in order
+
+      return result;//Return array
+    }
 
    // a couple of test cases for the sunsetViews() method
    public static void main(String[] args) {
-      SunsetViewsNoStack solution = new SunsetViewsNoStack();
+      SunsetViewsStack solution = new SunsetViewsStack();
       // test 1
       int[] buildings = {3, 5, 4, 4, 3, 1, 3, 2};
       System.out.println(solution.sunsetViews(buildings, "EAST")); // prints [1, 3, 6, 7]

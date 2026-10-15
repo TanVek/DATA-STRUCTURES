@@ -38,7 +38,7 @@ public class Stack<E> implements Iterable<E>{
    public E peek() {
       if(isEmpty()) throw new NoSuchElementException("Stack underflow");
       // IMPLEMENT THIS METHOD
-      return null; // CHANGE THIS LINE
+      return first.data; // CHANGE THIS LINE
    }
 
    /* returns true if this stack is empty, false otherwise */
