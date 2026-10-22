@@ -40,7 +40,7 @@ public class IntTree {
          if(node == null) return;
          else{
             //int = left inorderHelper(node.left);
-            
+
             System.out.print(node.data + " "); //return here
             inorderHelper(node.right);
          }
@@ -75,7 +75,7 @@ public class IntTree {
             for(int i = 0; i < level; i++){
                System.out.print("---");
             }
-            System.out.println(root.data);
+            System.out.println(root.data);//1
             printSideways(root.left, level + 1);
          }
       }
